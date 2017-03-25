@@ -1,0 +1,147 @@
+@CHARSET "UTF-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+    font-family: Tahoma, sans-serif;
+}
+
+body {
+	background-color: #fff;
+	padding: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#resultSet {
+    float: left;
+    width: 100%;
+}
+
+select.qSel {
+	margin-bottom: 10px;
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	font-size: 14px;
+	border-radius: 3px;
+	padding: 3px;
+    transition: 0.3s;
+}
+
+select.qSel:hover {
+	background-color: #333;
+    color: #fff;
+	cursor: pointer;
+}
+
+span.btn {
+	background-color: #fff;
+	border: 2px solid #333;
+	color: #333;
+	font-size: 14px;
+	border-radius: 3px;
+	padding: 3px;
+    transition: 0.3s;
+}
+
+span.btn:hover {
+	background-color: #333;
+    color: #fff;
+	cursor: pointer;
+}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.topnav li a:hover {background-color: #555;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+#home {
+    display: inline-block;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
+
+#homePanel {
+    margin-top: 10px;
+    border-bottom: 2px solid #333;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+canvas#chartCanvas {
+    max-height: 600px;
+    max-width: 800px;
+}
+
+#resultSet {
+    margin-top: 10px;
+    overflow: auto;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#erd {
+    display: none;
+}
+
+div#screenOverlay {
+	position: absolute;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	opacity: .2;
+	visibility: hidden;
+}
