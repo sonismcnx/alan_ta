@@ -39,6 +39,9 @@ public class GetDataFromDB extends HttpServlet {
 	private static String dbName = "alan_ta";
 	private static String dbUser = "alan";
 	private static String dbPass = "beng24a92ec2";
+	private static long startTimeData = 0;
+	private static long stopTimeData = 0;
+	private static long timeDiffData = 0;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -148,6 +151,8 @@ public class GetDataFromDB extends HttpServlet {
     	int colCount = rs.getMetaData().getColumnCount();
     	String escColData = new String();
     	
+    	startTimeData = System.currentTimeMillis();
+    	
     	jsonData = jsonData.concat("\"entries\":[");
     	
     	while(rs.next()) {
@@ -176,6 +181,9 @@ public class GetDataFromDB extends HttpServlet {
     	conn.close(); // close the SQL connection
 
     	jsonRoot = "{" + jsonData + "}";
+    	stopTimeData = System.currentTimeMillis();
+    	timeDiffData = stopTimeData - startTimeData;
+    	System.out.println(timeDiffData + " ms");
     	return jsonRoot; 
     }
     
@@ -210,6 +218,9 @@ public class GetDataFromDB extends HttpServlet {
     	String colName = new String();
     	String escColData = new String();
     	
+    	
+    	startTimeData = System.currentTimeMillis();
+    	
     	xmlData = "<root><entries>";
     	
 //    	put data into order
@@ -234,7 +245,11 @@ public class GetDataFromDB extends HttpServlet {
     	conn.close(); // close the SQL connection
     	
     	xmlData = xmlData + "</entries></root>";
-    	    	
+    	
+    	stopTimeData = System.currentTimeMillis();
+    	timeDiffData = stopTimeData - startTimeData;
+    	System.out.println(timeDiffData + " ms");
+    	
     	return xmlData;
     }
     
