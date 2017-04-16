@@ -235,30 +235,45 @@ function formatSizeUnits(bytes) {
 
 function displayJSON(jsonObj, quantity) {
 	var jsonObj = JSON.parse(jsonObj);
-	var firstObj = jsonObj.entries[0];
-	var propertyNames = Object.getOwnPropertyNames(firstObj);
+	var colNames = jsonObj.colNames;
+	var entries = jsonObj.entries;
+//	var propertyNames = Object.getOwnPropertyNames(firstObj);
+	
+	
 		
 	var tableFull = "";
 	
 	var tableContent = "<tr><th>No</th>";
 	
-	// tr for thead
-	for(let value of propertyNames) {
-		tableContent = tableContent + "<th>" + value + "</th>"
+	for(let colName of colNames) {
+		tableContent = tableContent + "<th>" + colName + "</th>";
 	}
+	// tr for thead
+//	for(let value of propertyNames) {
+//		tableContent = tableContent + "<th>" + value + "</th>"
+//	}
 	
 	tableContent = tableContent + "</tr>"
 	
 	
 	var rowNum = 1;
+	var dataColCount = jsonObj.entries[0].length;
 	
 	for(i=0; i < jsonObj.entries.length; i++) {
 
+		tableContent = tableContent + "<tr><td>" + rowNum + "</td>";
 		
-
+		j = 0;
+		while(j < dataColCount) {
+			tableContent = tableContent + "<td>" + jsonObj.entries[i][j] + "</td>"
+			j++;
+		}
+		
+		tableContent = tableContent + "<tr>"
+		rowNum++;
 	}
 	
-	tableFull = "<table>" + tableContent + "</table>"
+	tableFull = "<table border=1>" + tableContent + "</table>"
 	
 	document.getElementById("resultSet").innerHTML = tableFull;
 	

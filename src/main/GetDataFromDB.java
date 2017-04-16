@@ -153,25 +153,40 @@ public class GetDataFromDB extends HttpServlet {
     	
     	startTimeData = System.currentTimeMillis();
     	
-    	jsonData = jsonData.concat("\"entries\":[");
+    	String colName = new String();
+    	
+    	jsonData = jsonData.concat("\"colNames\": [");
+    	
+    	for(int i = 1; i <= colCount; i++) {
+    		colName = rs.getMetaData().getColumnName(i);
+    		if(i != colCount) {
+    			jsonData = jsonData.concat("\"" + colName + "\",");
+    		} else {
+    			jsonData = jsonData.concat("\"" + colName + "\"");
+    		}
+    	}
+    	
+    	jsonData = jsonData.concat("]");
+    	
+    	jsonData = jsonData.concat(", \"entries\":[");
     	
     	while(rs.next()) {
 
     		lastCol = false;
     		
-    		jsonData = jsonData.concat("{");
+    		jsonData = jsonData.concat("[");
     		
     		for(int i = 1; i <= colCount; i++) {
     			
     			lastCol = ( i != colCount ) ? false : true;
 
 				escColData = StringEscapeUtils.escapeHtml4(rs.getString(i));
-				jsonData = jsonData + "\""+ rs.getMetaData().getColumnName(i) + "\":" + "\"" + escColData + "\"";
+				jsonData = jsonData + "\"" + escColData + "\"";
 				
 				if(!lastCol) {
 					jsonData = jsonData.concat(",");
 				} else {
-					jsonData = jsonData.concat("}");
+					jsonData = jsonData.concat("]");
 				}
 				
     		}
