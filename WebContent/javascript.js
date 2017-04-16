@@ -97,7 +97,7 @@ function displayResponse(request, fmt, qLimit) {
 				
 				console.log(tx + " " + formatSizeUnits(xhrResultSet.length));
 				lineChart.update();
-				displayJSON(xhrResultSet);
+				displayJSON(xhrResultSet, qLimit);
 				
 	        } else if(fmt=="xml") {
 				
@@ -134,14 +134,6 @@ function fetchResultSet(fmt) {
         
         request.send(null);
     }
-}
-
-function displayJSON(jsonData) {
-	
-}
-
-function displayXml(xmlData) {
-	
 }
 
 //chart.js stuff
@@ -239,4 +231,39 @@ function formatSizeUnits(bytes) {
     else if (bytes==1)          {bytes=bytes+' byte';}
     else                        {bytes='0 byte';}
     return bytes;
+}
+
+function displayJSON(jsonObj, quantity) {
+	var jsonObj = JSON.parse(jsonObj);
+	var firstObj = jsonObj.entries[0];
+	var propertyNames = Object.getOwnPropertyNames(firstObj);
+		
+	var tableFull = "";
+	
+	var tableContent = "<tr><th>No</th>";
+	
+	// tr for thead
+	for(let value of propertyNames) {
+		tableContent = tableContent + "<th>" + value + "</th>"
+	}
+	
+	tableContent = tableContent + "</tr>"
+	
+	
+	var rowNum = 1;
+	
+	for(i=0; i < jsonObj.entries.length; i++) {
+
+		
+
+	}
+	
+	tableFull = "<table>" + tableContent + "</table>"
+	
+	document.getElementById("resultSet").innerHTML = tableFull;
+	
+}
+
+function displayXml(xmlData) {
+	
 }
