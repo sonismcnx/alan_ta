@@ -195,10 +195,14 @@ public class GetDataFromDB extends HttpServlet {
     	}
     	conn.close(); // close the SQL connection
 
-    	jsonRoot = "{" + jsonData + "}";
+    	
     	stopTimeData = System.currentTimeMillis();
     	timeDiffData = stopTimeData - startTimeData;
+    	
+    	jsonData = jsonData.concat(", \"compileTime\":" + timeDiffData);
+    	
     	System.out.println(timeDiffData + " ms");
+    	jsonRoot = "{" + jsonData + "}";
     	return jsonRoot; 
     }
     
