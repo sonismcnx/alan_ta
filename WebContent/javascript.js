@@ -104,7 +104,7 @@ function displayResponse(request, fmt, qLimit) {
 	            request.response = "text/xml";
 	            xhrResultSet = request.responseXML;
 				tx = round((t1-t0), 4);
-				var xmlText = request.responseText;
+				// var xmlText = request.responseText;
 				if(qLimit=="b") {
 					dataXML[1] = tx;
 				} else if(qLimit=="c"){
@@ -236,10 +236,7 @@ function formatSizeUnits(bytes) {
 function displayJSON(jsonObj, quantity) {
 	var jsonObj = JSON.parse(jsonObj);
 	var colNames = jsonObj.colNames;
-	var entries = jsonObj.entries;
-//	var propertyNames = Object.getOwnPropertyNames(firstObj);
-	
-	
+	var entries = jsonObj.entries;	
 		
 	var tableFull = "";
 	
@@ -248,10 +245,6 @@ function displayJSON(jsonObj, quantity) {
 	for(let colName of colNames) {
 		tableContent = tableContent + "<th>" + colName + "</th>";
 	}
-	// tr for thead
-//	for(let value of propertyNames) {
-//		tableContent = tableContent + "<th>" + value + "</th>"
-//	}
 	
 	tableContent = tableContent + "</tr>"
 	
@@ -280,5 +273,9 @@ function displayJSON(jsonObj, quantity) {
 }
 
 function displayXml(xmlData) {
-	
+	var nodes = xmlData.querySelectorAll("*");
+
+	for (var i =0; i < nodes.length; i++) {
+		
+	} 
 }

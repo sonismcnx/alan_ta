@@ -236,8 +236,7 @@ public class GetDataFromDB extends HttpServlet {
     	
     	String colName = new String();
     	String escColData = new String();
-    	
-    	
+    	    	
     	startTimeData = System.currentTimeMillis();
     	
     	xmlData = "<root><entries>";
